@@ -1,4 +1,6 @@
-export type SignInDto = Readonly<{
-  username: string;
-  password: string;
-}>;
+export class SignInDto {
+  constructor(
+    readonly username: string,
+    readonly password: string,
+  ) {}
+}

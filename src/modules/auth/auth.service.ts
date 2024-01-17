@@ -7,6 +7,7 @@ import { UserService } from '../user/user.service';
 import { compareHash, hashPassword } from '../../utils/encryption';
 import { JwtService } from '@nestjs/jwt';
 import { CreateUserDto } from '../user/user.dto';
+import { Error } from 'mongoose';
 
 @Injectable()
 export class AuthService {
@@ -25,11 +26,7 @@ export class AuthService {
       throw new NotFoundException('User not found!');
     }
 
-    const incomingHashedPassword = await hashPassword(password);
-    const isAuthorised = await compareHash(
-      user.password,
-      incomingHashedPassword,
-    );
+    const isAuthorised = await compareHash(password, user.password);
 
     if (!isAuthorised) {
       throw new UnauthorizedException('User not authorized!');
@@ -43,8 +40,11 @@ export class AuthService {
   }
 
   async register(user: CreateUserDto) {
-    // const user = await this.userService.getUserByUsername(username);
-    // throw already taken username error!
+    const userExists = await this.userService.getUserByUsername(user.username);
+
+    if (userExists) {
+      throw new Error('User with username already exists');
+    }
 
     const hashedPassword = await hashPassword(user.password);
 

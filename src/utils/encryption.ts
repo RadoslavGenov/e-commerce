@@ -13,8 +13,8 @@ export const hashPassword = async (password: string): Promise<string> => {
 };
 
 export const compareHash = async (
-  savedHash: string,
-  incomingHash: string,
+  password: string,
+  hash: string,
 ): Promise<boolean> => {
-  return bcrypt.compare(savedHash, incomingHash);
+  return bcrypt.compare(password, hash);
 };
