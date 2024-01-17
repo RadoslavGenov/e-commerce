@@ -22,8 +22,11 @@ class ConfigService {
     const user = this.getValue('DB_USER');
     const pass = this.getValue('DB_PASS');
     const host = this.getValue('DB_HOST');
+    const port = this.getValue('DB_PORT');
+    const identifier = this.getValue('DB_SCHEMA_IDENTIFIER');
+    const dbName = this.getValue('DB_NAME');
 
-    return `mongodb+srv://${user}:${pass}@${host}/`;
+    return `${identifier}://${user}:${pass}@${host}:${port}/${dbName}`;
   }
 }
 
