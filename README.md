@@ -2,6 +2,17 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Prerequisites
+
+Have mongodb up and running locally (https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/)
+
+Also, optional but a good tool is MongoDB extension for VSCode
+
+```bash
+# copy .env.dist to .env file, update environment variables to proper local variables for db
+$ cp .env.dist .env
+```
+
 ## Installation
 
 ```bash
@@ -21,17 +32,11 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
+## API
 
 ```bash
-# unit tests
-$ yarn run test
-
-# e2e tests
-$ yarn run test:e2e
-
-# test coverage
-$ yarn run test:cov
+# development
+$ swagger api documentation can be seen in http://localhost:3000/api
 ```
 
 ## Support
